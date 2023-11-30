@@ -86,6 +86,22 @@
                  }
         function updateData() {
             $("#display").html("update does not work");
+             UTdata.fetch()  
+           .then(function(results){    
+                let value = parseInt($("#updata").val());
+                results.set(key, value);
+               return results.delete();  
+               })  
+            .then(function(results){    
+                   $("#display").removeClass();    
+                   $("#display").addClass("bg-success");   
+                   $("#display").html("updeta success");  
+                   })  
+            .catch(function(error){    
+                   $("#display").removeClass();    
+                   $("#display").addClass("bg-warning");    
+                   $("#display").html("delete fail:" + JSON.stringify(error));  
+             })
         }
     </script>
 </head>
@@ -100,7 +116,7 @@
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
         <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
-        <a onclick="deleteData()" class="btn btn-outline-primary" role="buton">Delete</a>
+        <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
     </div>
     <div>
         <input type="text" id="update" placeholder="更新">
