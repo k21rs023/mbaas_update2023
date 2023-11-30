@@ -70,6 +70,20 @@
 
         function deleteData() {
             $("#display").html("delete does not work");
+            UTdata.fetch()
+                .then(function(results) {
+                   return results.deleta();
+                })
+                .then(function(results) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-succese");
+                    $("#display").html("delete succese");
+                })
+                   .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("delete fail:" + JSON.stringify(error));
+                })             
         }
 
         function updateData() {
@@ -87,7 +101,7 @@
     <div>
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
-        <a onclick="countData()" class="btn btn-outline-primary" role="button">Count</a>
+        <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
         <a onclick="deleteData()" class="btn btn-outline-primary" role="buton">Delete</a>
     </div>
     <div>
